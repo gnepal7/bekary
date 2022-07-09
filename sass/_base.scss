@@ -1,17 +1,15 @@
 @charset "UTF-8";
 /* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
-/* colors*/
-$main: #0075B9;
-$ass:#C92B2B;
-$lgray:#F4EFF6;
-$dgray:#3a3a3a;
-$gray:#d2d3d4;
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500;600;700&family=Nanum+Pen+Script&family=Playfair+Display:wght@400;600;700&family=Roboto:wght@400;500&display=swap');/* colors*/
 $white:#ffffff;
+$black:#56534c;
+$org:#dfc691;
+$dgray:#a47d5e;
+$gray:#f3f1e9;
 
 /* fonts*/
-$font-title:'Noto Sans Devanagari', sans-serif;
-$font-body: 'Mukta', sans-serif;
+$font-title:'Alegreya', serif;
+$font-body: 'Roboto', sans-serif;
 /* media queries */
 @mixin min($width){
 	@media (min-width: #{$width}){
@@ -44,7 +42,7 @@ $font-body: 'Mukta', sans-serif;
 @mixin contArea{
 	margin-left:auto;
 	margin-right:auto;
-	max-width: 75rem;
+	max-width: 79.375rem;
 }
 @mixin clearfix{
 	&:before, 
@@ -56,54 +54,36 @@ $font-body: 'Mukta', sans-serif;
 		clear: both;
 	}
 }
-@mixin overBg{
-	content:"";	
-	position: absolute;
-	left:0;
-	right:0;
-	bottom:0;		
-	background-image:linear-gradient(to top, rgba($dgray, .95), rgba($dgray, .2));
-	border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
+@mixin imgFixed{
+	background-size:cover !important;
+	background-attachment: fixed !important;
 }
-@mixin overBg1{
-	@include overBg;
-	height:85%;
+@mixin firefox{
+  @at-root {
+    @-moz-document url-prefix() {
+      & {
+        @content;
+      }
+    }
+  }
 }
-@mixin overBg2{
-	@include overBg;
-	height:100%;
+@mixin smtext{
+	text-transform: uppercase;
+	color:$dgray;
+	margin-bottom: 4.375rem;
+	font-family:$font-title;
 }
-@mixin adgap{
-	margin-top:1.5rem;
-	& img{
-		width: 100%;
-		&:not(:last-child){
-			margin-bottom: 1rem;					
-		}
-	}
+@for $index from 1 through 6 {
+    h#{$index} {
+        font-family: $font-title;
+        line-height: 1.5;
+        font-weight: 500;        
+    }
 }
-@mixin lineClamp{
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-@mixin lc3{
-	@include lineClamp;
-	-webkit-line-clamp:3;
-}
-@mixin curveTop{
-	padding-top:.5rem;
-	&:before{
-		content: "";
-		height: .9rem;
-		width: 100%;
-		background-color:lighten($lgray, 2%);
-		position: absolute;
-		top:-.45rem;
-		left:0;
-		@include radius(100%);
-	}
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
 }
 *{
 	margin:0;
@@ -114,20 +94,9 @@ $font-body: 'Mukta', sans-serif;
 *::after {
   box-sizing: border-box;
 }
-@media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth;
-  }
-}
-[hidden] {
-  display: none !important;
-}
-@for $index from 1 through 6 {
-    h#{$index} {
-        font-family: $font-title;
-        line-height: 1.5;
-        font-weight: 500;        
-    }
+ul,
+ol{
+	list-style-type: none;
 }
 a{
 	font-family: $font-title;
@@ -135,15 +104,12 @@ a{
 	-webkit-transition:all linear .3s;
 	-o-transition:all linear .3s;
 	transition:all linear .3s;
-	color:$dgray;
+	color:$black;
 	&:hover,
 	&:focus{
 		text-decoration: none;
-		color:$ass;
+		color:$dgray;
 	}	
-}
-textarea{
-	resize:none;
 }
 html{	
 	font-size: 100%; 
@@ -154,15 +120,4 @@ html{
 	@include max(63.938em){
 		font-size: 85%;
 	}		
-}
-ul,
-ol{
-	margin:0;
-	padding:0;
-}
-iframe{
-	width:100%;
-}
-svg{
-	display: block;	
 }

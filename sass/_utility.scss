@@ -1,0 +1,136 @@
+html,
+body{
+	-webkit-text-size-adjust: 100%;
+	font-family: $font-body;
+	font-weight: 400;
+	line-height: 1.6;
+	color:$dgray;
+	-webkit-font-smoothing: antialiased;
+	height: 100%;
+	@include max(767px){
+		font-size: 90%;
+	}
+	&.over{
+		overflow:hidden;
+	}	
+}
+.wrapper{
+	@include contArea;
+	padding:0 1rem;
+}
+.df{
+	display: flex;
+}
+.dfc{
+	display: flex;
+	flex-direction:column;
+}
+.dg{
+	display: grid;
+	grid-auto-rows: auto;
+	grid-template-columns: repeat(12, 1fr);
+}
+.py6{
+	padding-top:6.25rem;
+	padding-bottom:6.25rem;
+	@include max(767px){
+		padding-top:3rem;
+		padding-bottom:3rem;
+	}
+}
+div[class^='w-']{
+	@include max(767px){
+		width: 100%;
+	}
+}
+img{	
+	vertical-align: middle;
+}
+.btn{
+	font-size: 1rem;
+	text-transform: uppercase;
+	font-family: $font-title;
+	font-weight: 500;
+	-webkit-transition: ease-out 0.4s;
+	-moz-transition: ease-out 0.4s;
+	transition: ease-out 0.4s;
+	&.sm{
+		padding:.7rem 2rem;
+	}
+	&.white{
+		color:$white;
+	}
+	&.org{
+		color:$org;
+	}
+	&.dashed{
+		border:1px dashed $dgray;
+	}
+	&.bg-black{
+		background-color: rgba($black, .7);
+		letter-spacing: 2px;
+		box-shadow: inset 0 0 0 0 $gray;
+		&:hover{			
+			box-shadow: inset 13rem 0 0 0 $dgray;
+			border:1px solid $dgray;
+		}
+	}
+	
+}
+.big-title{
+	font-size: 3.75rem;
+	color:$white;
+	@include max(767px){
+		font-size: 2.5rem;
+	}
+}
+.md-title{
+	font-size: 2.2rem;
+	@include max(767px){
+		font-size: 1.7rem;
+	}
+}
+.sm-text{
+	@include smtext;
+	font-size: 1rem;	
+}
+.owl-nav{	
+	grid-gap:.7rem;
+	position: absolute;
+	left:0;
+	right:0;
+	top:calc( 50% - 1rem );
+	justify-content:space-between;
+	&,
+	& .owl-prev,
+	& .owl-next{		
+		align-items:center;
+		display: flex;
+		font-family: 'Nanum Pen Script', cursive !important;
+	}
+	& .owl-prev{
+		left:0;
+	}
+	& .owl-next{
+		right:0;
+	}
+	& .owl-prev,
+	& .owl-next{	
+		justify-content:center;	
+		height: 2rem;
+		width:2rem;
+		@include radius(50%);
+		border:2px solid $gray !important;
+		color:darken($gray, 22%) !important;
+		font-size: 1.5rem !important;
+		transition:all linear .3s;
+		&:hover{
+			border-color:$black !important;
+			color:$black !important;
+		}
+		&>i.i{
+			height: 1rem;
+			display: block;
+		}		
+	}
+}
