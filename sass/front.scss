@@ -158,6 +158,7 @@
 /***** banner part *****/
 .banner{
 	height: 100vh;
+	background-size:cover !important;
 	& *{
 		color:$white;
 	}

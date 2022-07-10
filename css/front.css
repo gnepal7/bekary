@@ -432,6 +432,7 @@ img {
 /***** banner part *****/
 .banner {
   height: 100vh;
+  background-size: cover !important;
 }
 .banner * {
   color: #ffffff;
