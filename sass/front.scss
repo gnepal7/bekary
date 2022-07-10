@@ -34,6 +34,22 @@
 	left:0;
 	right:0;
 	z-index:2;
+	&.fixed-header{
+		background-color: $white;
+		box-shadow: 0 0 10px 2px rgba($black, .2);
+		& .menu_li{
+			&:not(:last-of-type){
+				&:before{
+					color:$black;
+				}
+			}
+		}
+		& .logo,
+		& .menu_a,
+		& .social_a{
+			color:$black;
+		}
+	}
 	&_inner{
 		justify-content:space-between;
 		grid-gap:1rem;
@@ -45,14 +61,16 @@
 		&:hover{
 			color:$org;
 		}
-	}
-	.logo{
-		& h1{
-			font-family: 'Nanum Pen Script', cursive;
-			font-size: 2rem;
-			line-height: 1;
-		}
-	}
+	}	
+}
+.logo{
+	color:$white;
+	& h1{
+		font-family: 'Nanum Pen Script', cursive;
+		font-size: 2rem;
+		line-height: 1;
+		text-transform: lowercase;
+	}	
 }
 .menu{
 	flex:1;
@@ -120,12 +138,7 @@
 		&:not(:last-of-type){
 			&:before{
 				@include min(768px){
-					content: "~";
-					font-size: 1rem;
-					line-height: 1;
-					position: absolute;
-					right:-.34rem;
-					top:calc( 50% - .5rem );
+					@include tilt;
 					color:$gray;
 				}
 			}
@@ -367,22 +380,16 @@
 			background-color: $white;
 			box-shadow: 0 .5rem 2.5rem 2rem rgba($black, .3);
 			& h5{
+				@include prepTitle;
 				font-size: 1.2rem;
-				text-transform: uppercase;
-				color:$dgray;
-				letter-spacing: 2px;
-				font-weight: bolder;
 			}
 			& time{
+				@include prepTime;
 				font-size: 5rem;
 				margin-top:1rem;
-				margin-bottom:.5rem;
-				line-height: 1;
-				font-family: $font-title;
 			}
 			& small{
-				font-size: 1rem;
-				color:$black;
+				@include prepMin;
 
 			}
 		}
@@ -461,14 +468,14 @@
 				border-right:1px dashed $dgray;
 				box-shadow: -5px 0px 0px 0px $white, 5px 0px 0px 0px $white;
 			}
-			// &:before,
-			// &:after{
-			// 	content: "";
-			// 	width:1.5rem;
-			// 	position: absolute;
-			// 	background-color: $white;
-			// 	z-index: -1;
-			// }
+			/*&:before,
+			&:after{
+			 	content: "";
+			 	width:1.5rem;
+			 	position: absolute;
+			 	background-color: $white;
+			 	z-index: -1;
+			}*/
 			&:before{
 				height:calc( 100% - 5rem );
 				top:2.5rem;
@@ -579,6 +586,9 @@
 					font-size: 1.2rem;
 				}
 			}
+			& p{
+				color:$black;
+			}
 		}
 	}
 	&_big{
@@ -594,16 +604,111 @@
 			object-fit:cover;
 			border:.7rem solid $white;
 		}
+		& .btn{
+			position: absolute;
+			left:-1rem;
+			bottom:-1rem;
+			@include max(767px){
+				left:0;
+				bottom:0;
+			}
+		}
 	}
 	&_prep{
 		position: absolute;
 		right:.7rem;
 		height:calc( 100% + 2rem );
 		top:-1rem;
-		background-color: rgba($white, .7);
-		padding:2rem;
-		&-box{
+		background-color: rgba($white, .7);		
+		&-box{	
+			padding:2rem;
+			text-align: center;
+			height: calc( 100% / 3 );
+			&:first-of-type{
+				border-bottom:1px solid $dgray;
+			}
+			&:last-of-type{
+				background: $white url('../images/sand-bg.png') no-repeat bottom center;
+				& h5{
+					@include prepTitle;
+					font-size: 1.2rem;
+				}
+				& time{
+					@include prepTime;
+					font-size: 5rem;					
+					margin-top:1rem;
+				}
+				& small{
+					@include prepMin;
+
+				}
+			}
+			&:not(:last-of-type){
+				& h5{
+					@include prepTitle;
+					font-size: 1rem;
+				}
+				& time{
+					@include prepTime;
+					font-size: 3.5rem;
+					margin-top:1rem;
+					color:$black;
+				}
+				& small{
+					@include prepMin;
+
+				}
+			}
 			
+		}
+	}
+}
+.footer{
+	background-color: $gray;
+	padding-top:2rem;
+	padding-bottom: 5rem;	
+	@include max(767px){
+		padding-top:1.5rem;
+		padding-bottom:3rem;		
+	}
+	&_menu{
+		justify-content: space-around;
+		grid-gap: 2rem;
+		align-items: center;
+		@include max(767px){
+			flex-direction: column;
+			grid-gap:1rem;			
+		}
+	}
+	&_ul{
+		flex:1;
+		justify-content: space-between;
+		border-block: 1px solid rgba($black, .5);
+		writing-mode: horizontal-tb;
+		padding:1rem 0;
+		width:100%;
+	}
+	&_li{
+		position: relative;	
+		padding:0 3rem;	
+		@include max(767px){
+			padding:0 1rem;
+		}
+		&:not(:last-of-type){
+			&:before{
+				@include min(768px){
+					@include tilt;
+					color:$black;
+				}
+			}
+		}
+	}
+	&_a{
+		text-transform: uppercase;
+	}
+	.logo{
+		& h1{
+			color:$black;
 		}
 	}
 }

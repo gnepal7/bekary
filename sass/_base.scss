@@ -73,13 +73,35 @@ $font-body: 'Roboto', sans-serif;
 	margin-bottom: 4.375rem;
 	font-family:$font-title;
 }
-
+@mixin tilt{
+	content: "~";
+	font-size: 1rem;
+	line-height: 1;
+	position: absolute;
+	right:-.34rem;
+	top:calc( 50% - .5rem );
+}
 @for $index from 1 through 6 {
     h#{$index} {
         font-family: $font-title;
         line-height: 1.5;
         font-weight: 500;        
     }
+}
+@mixin prepTitle{	
+	text-transform: uppercase;
+	color:$dgray;
+	letter-spacing: 2px;
+	font-weight: bolder;
+}
+@mixin prepTime{		
+	margin-bottom:.5rem;
+	line-height: 1;
+	font-family: $font-title;
+}
+@mixin prepMin{
+	font-size: 1rem;
+	color:$black;
 }
 @media (prefers-reduced-motion: no-preference) {
   :root {
