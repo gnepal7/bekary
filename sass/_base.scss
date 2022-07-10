@@ -72,6 +72,9 @@ $font-body: 'Roboto', sans-serif;
 	color:$dgray;
 	margin-bottom: 4.375rem;
 	font-family:$font-title;
+	@include max(767px){
+		margin-bottom: 1.5rem;
+	}
 }
 @mixin tilt{
 	content: "~";
@@ -102,6 +105,14 @@ $font-body: 'Roboto', sans-serif;
 @mixin prepMin{
 	font-size: 1rem;
 	color:$black;
+}
+@mixin boxInside{
+	content:"";
+	height:96%;
+	width:96%;				
+	position: absolute;
+	left:2%;
+	top:2%;	
 }
 @media (prefers-reduced-motion: no-preference) {
   :root {

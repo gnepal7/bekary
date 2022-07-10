@@ -18,7 +18,7 @@ $( document ).ready(function() {
     $(".tasty_slider").owlCarousel({
       //loop: true,
       autoplay: false,
-      margin: 20,
+      margin: 15,
       items: 3,
       nav: true,
       dots: false,

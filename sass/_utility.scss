@@ -34,8 +34,8 @@ body{
 	padding-top:6.25rem;
 	padding-bottom:6.25rem;
 	@include max(767px){
-		padding-top:3rem;
-		padding-bottom:3rem;
+		padding-top:2.5rem;
+		padding-bottom:2.5rem;
 	}
 }
 div[class^='w-']{
@@ -56,9 +56,15 @@ img{
 	transition: ease-out 0.4s;
 	&.sm{
 		padding:.7rem 2rem;
+		@include max(767px){
+			padding:.5rem 1rem;
+		}
 	}
 	&.big{
 		padding:1rem 2.5rem;
+		@include max(767px){
+			padding:.7rem 1.3rem;
+		}
 	}
 	&.white{
 		color:$white;
@@ -137,6 +143,12 @@ img{
 	right:0;
 	top:calc( 50% - 1rem );
 	justify-content:space-between;
+	@include max(767px){
+		left:calc( 50% - 2.5rem );
+		right:calc( 50% - 2.5rem );
+		top:auto;
+		bottom:0;
+	}
 	&,
 	& .owl-prev,
 	& .owl-next{		
@@ -160,6 +172,9 @@ img{
 		color:darken($gray, 22%) !important;
 		font-size: 1.5rem !important;
 		transition:all linear .3s;
+		@include max(767px){
+			border-color:darken($gray, 22%) !important;
+		}
 		&:hover{
 			border-color:$black !important;
 			color:$black !important;

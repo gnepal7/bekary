@@ -33,7 +33,7 @@
 	top:0;
 	left:0;
 	right:0;
-	z-index:2;
+	z-index:5;
 	&.fixed-header{
 		background-color: $white;
 		box-shadow: 0 0 10px 2px rgba($black, .2);
@@ -44,10 +44,17 @@
 				}
 			}
 		}
+		& .menu_toggler,
 		& .logo,
 		& .menu_a,
 		& .social_a{
-			color:$black;
+			color:$black;			
+		}
+		& .menu_a,
+		& .social_a{
+			@include max(767px){
+				color:$white;
+			}
 		}
 	}
 	&_inner{
@@ -94,7 +101,7 @@
 		left:0;
 		top:0;
 		transition:all ease-in-out .5s;
-		padding-top: 2rem;	
+		padding-top: 3rem;	
 		overflow-y:auto;							
 	}
 	&_toggler{
@@ -110,7 +117,7 @@
 		background-color:transparent;
 		color:$gray;
 		cursor: pointer;
-		top: calc( 50% - 14px );
+		top: calc( 50% - 10px );
 		&:focus{
 			outline: none;
 			box-shadow: none;
@@ -186,9 +193,10 @@
 		font-weight: 600;
 		letter-spacing: 5px;
 		margin-bottom: 4.5rem;
+		text-align: center;
 		@include max(767px){
 			font-size: 3rem;
-			margin-bottom: 3rem;
+			margin-bottom: 2rem;
 		}
 	}
 	&_text{		
@@ -197,8 +205,8 @@
 		text-align: center;
     	font-weight: 500;
     	letter-spacing: 3px;		
-    	-webkit-text-stroke: 1px $black;
-    	text-stroke: 1px $black;
+    	-webkit-text-stroke: 1px rgba($black, .5);
+    	text-stroke: 1px rgba($black, .5);
     	@include min(768px){
     		max-width: 50%;
     	}
@@ -226,14 +234,21 @@
 	& .box{
 		height: 7.5rem;
 		width:7.5rem;
-		outline:.5rem solid transparent;		
 		align-items:center;
 		justify-content:center;
+		background-size:cover !important;
 		z-index: 2;
+		@include max(767px){
+			height: 5rem;
+			width:5rem;
+		}
 		& img{
 			padding:.7rem;
 			background-color: $white;
 			@include radius(50%);
+			@include max(767px){
+				width:70%;
+			}
 
 		}
 	}
@@ -242,8 +257,14 @@
 .cake{	
 	margin-top:-3.5rem;
 	background-size:cover !important;
+	@include max(767px){
+		margin-top:-2.5rem;
+	}
 	&_inner{
 		grid-gap:2rem;
+		@include max(767px){
+			grid-gap:1.5rem;
+		}
 		&>div{
 			grid-column:span 6;
 			@include max(767px){
@@ -255,6 +276,9 @@
 		align-items:center;	
 		text-align: center;	
 		padding:0 3rem;
+		@include max(767px){
+			padding:0;
+		}
 	}
 	&_post{
 
@@ -262,12 +286,34 @@
 	&_img{
 		grid-gap:1.5rem;
 		position: relative;
+		@include max(767px){
+			grid-gap:.7rem;
+		}
 		&-outer{
 			grid-column:span 6;
+			position: relative;
+			z-index: 1;
+			height:18rem;
+			@include max(767px){
+				grid-column:span 12;
+				height: auto;
+			}
+			&:before{
+				@include boxInside;
+				border:.5rem solid $white;
+				@include max(767px){
+					border:.2rem solid $white;
+				}
+			}
+			
 			& img{
 				width:100%;
-				height:17rem;
-				object-fit:cover;	
+				height:100%;
+				object-fit:cover;
+				z-index: 2;
+				@include max(767px){
+					height:auto;
+				}	
 			}
 		}	
 		
@@ -284,10 +330,20 @@
     	justify-content: center;
     	padding: 2rem;
     	text-align: center;
-    	letter-spacing: 3px; 
+    	letter-spacing: 3px;
+    	z-index:3;
+    	@include max(767px){
+    		position: relative;
+    		grid-column:span 12;
+    		top:0;
+    		left:0;
+    		transform:translate(0,0,);
+    		margin:0 auto;
+    		padding:0;
+    	} 
     	& h4{
     		font-size: 1.7rem;
-    		font-weight: 500;
+    		font-weight: 500;    		
     	}
 	}
 }
@@ -298,6 +354,10 @@
 		color:$black;
 		margin-top:2.75rem;
 		margin-bottom: 2.77rem;
+		@include max(767px){
+			margin-top:1.5rem;
+			margin-bottom: 1.5rem;
+		}
 	}
 	&_name{
 		font-size: 1.5rem;
@@ -305,18 +365,31 @@
 		border-block: 1px solid $gray;
 		writing-mode: horizontal-tb;
 		color:$black;
+		@include max(767px){
+			font-size: 1.1rem;
+		}
 	}
 	&_div{
 		grid-gap:1.5rem;
 		align-items:center;
+		justify-content:center;
+		width:100%;
+		@include max(767px){
+			grid-gap:.5rem;
+			justify-content:space-between;
+		}
 		& img{
 			@include radius(50%);
 			border:.5rem solid $white;
+			
 		}
 	}
 	&_quote{
 		margin-top:1.5rem;
 		width:86%;
+		@include max(767px){
+			width:100%;
+		}
 		& i{
 			display: block;
 			&:first-of-type{
@@ -344,13 +417,19 @@
 		flex-wrap:wrap;
 		max-width: 64rem;
 		margin:0 auto;
+		padding-left:1rem;
+		padding-right: 1rem;		
 	}
 	& .img-wrap{
 		grid-column:span 5;
 		background:url('../images/cherry.jpg') no-repeat top center;
 		background-size: cover;
 		clip-path: polygon(100% 0, 100% 100%, 11% 100%, 0 90%, 0 0);
-
+		@include max(767px){
+			grid-column:span 12;
+			height:25rem;
+			margin-bottom: 1.2rem;
+		}
 		& img{
 			width:100%;
 			object-fit:cover;
@@ -369,6 +448,15 @@
 		@include firefox{
 			max-width: 33rem;
 		}
+		@include max(767px){
+			grid-column:span 12;
+			padding:1rem;
+		}
+		& p{
+			@include max(767px){
+				margin-top:1.3rem;
+			}
+		}
 		& .ready-box{
 			position: absolute;
 			top:-2rem;
@@ -379,14 +467,28 @@
 			justify-content:center;
 			background-color: $white;
 			box-shadow: 0 .5rem 2.5rem 2rem rgba($black, .3);
+			@include max(767px){
+				top:0;
+				right:0;
+				box-shadow: 0 .2rem .5rem .2rem rgba($black, .3);
+				height:7rem;
+				width:7rem;
+			}
 			& h5{
 				@include prepTitle;
 				font-size: 1.2rem;
-			}
+				@include max(767px){
+					font-size: 1rem;
+				}
+			}			
 			& time{
 				@include prepTime;
 				font-size: 5rem;
 				margin-top:1rem;
+				@include max(767px){
+					font-size: 3rem;
+					margin-top:0;
+				}
 			}
 			& small{
 				@include prepMin;
@@ -395,8 +497,11 @@
 		}
 	}
 	&_slider{
-		margin-top:6.25rem;
 		margin:6.25rem auto 0;
+		@include max(767px){
+			margin:3rem auto 0;
+			padding-bottom:3rem;
+		}
 		& .owl-item{
 			width: 6.25rem !important;
 			height:6.25rem;	
@@ -411,6 +516,9 @@
 		& .owl-stage-outer{
 			max-width: 80%;
 			margin:0 auto;
+			@include max(767px){
+				max-width: 100%;
+			}
 		}
 	}
 }
@@ -420,17 +528,26 @@
 	&_inner{
 		grid-gap:3rem;
 		align-items:center;	
-		
+		@include max(767px){
+			grid-gap:1.5rem;
+			flex-direction:column;
+		}
 	}
 	& .text-part{
 		text-align: center;
 		padding-left:10rem;
+		@include max(767px){
+			padding-left:0;
+		}
 		& .small-text{
 			@include smtext;
 			font-size: 1.2rem;
 		}
 		& .price-wrap{
 			margin-top:4rem;
+			@include max(767px){
+				margin-top:1rem;
+			}
 			& .title{
 				color:$white;
 				font-size: 1.7rem;
@@ -448,51 +565,51 @@
 				font-size: 2.25rem;
 				margin-top:1.75rem;
 				display: block;
+				@include max(767px){
+					font-size: 1.7rem;
+					margin-top:0;
+				}
 			}
 		}
 	}
-	& .box{
-		padding-left:15rem;
-		padding-right:8rem;
-		&_info{
-			padding:2rem;
-			background-color: $white;			
-			position: relative;
-			box-shadow: 0 7px 0 5px rgba($black, .5);
-			z-index: 1;
+	& .box_info{
+		max-width: 28rem;
+		margin:auto;
+		padding:2rem;
+		background-color: $white;			
+		position: relative;
+		box-shadow: 0 7px 0 5px rgba($black, .5);
+		// z-index: 3;
+		clip-path: polygon(100% 0, 100% 100%, 5% 100%, 0 95%, 0 0);
+		@include max(767px){
+			padding:1rem;
+		}
+		&:before{
+			@include boxInside;
 			border:1px dashed $dgray;
-			outline:.5rem solid $white;
-			
-			&:before,
-			&:after{
-				border-right:1px dashed $dgray;
-				box-shadow: -5px 0px 0px 0px $white, 5px 0px 0px 0px $white;
-			}
-			/*&:before,
-			&:after{
-			 	content: "";
-			 	width:1.5rem;
-			 	position: absolute;
-			 	background-color: $white;
-			 	z-index: -1;
-			}*/
-			&:before{
-				height:calc( 100% - 5rem );
-				top:2.5rem;
-				right:-1.5rem;
-			}
-			& .estd{
-				justify-content:space-around;
-			}
-			&-title{
-				font-size: 2.75rem;
-				margin-top:4.6875rem;
-				margin-bottom:3.125rem;
-				color:$dgray;
-			}
-			& .btn{
-				margin-top:3.25rem;
+			z-index: -1;
+		}	
+		
+		& .estd{
+			justify-content:space-around;
+		}
+		&-title{
+			font-size: 2.75rem;
+			margin-top:4.6875rem;
+			margin-bottom:3.125rem;
+			color:$dgray;
+			@include max(767px){
+				font-size: 1.75rem;
+				margin-top:1.3rem;
 				margin-bottom: 2rem;
+			}
+		}
+		& .btn{
+			margin-top:3.25rem;
+			margin-bottom: 2rem;
+			@include max(767px){
+				margin-top:1.3rem;
+				margin-bottom: 1rem;
 			}
 		}
 		& .border{
@@ -543,6 +660,24 @@
 			align-items:center;
 			text-align: center;
 		}
+		// &-line{			
+		// 	height:96%;
+		// 	top:2%;	
+		// 	content:"";
+		// 	display: block;		
+		// 	&,
+		// 	&:before{
+		// 		position: absolute;
+		// 		width: 1rem;
+		// 		border-right:1px dashed $dgray;
+		// 		outline: .5rem solid $white;
+		// 		right:-.75rem; 
+		// 	}
+		// 	&:before{
+		// 		height:92%;
+		// 		top:4%;
+		// 	}
+		// }
 	}
 	
 }
@@ -555,6 +690,9 @@
 	}
 	&_inner{
 		grid-gap:5rem;
+		@include max(767px){
+			grid-gap:1.5rem;
+		}
 	}
 	&_small{
 		grid-column:span 4;
@@ -567,13 +705,14 @@
 			grid-column:span 12;
 			padding-left: 1rem;
 			padding-right:1rem;
-			grid-gap:1.5rem;
+			grid-gap:1.2rem;
+			margin-top:0;
 		}
 		&-item{
 			grid-gap:1rem;
 			align-items:center;
 			@include max(767px){
-				grid-gap:.7rem;
+				grid-gap:.5rem;
 			}
 			& img{
 				box-shadow: 0 2px 5px 0 rgba($black, .2);
@@ -597,12 +736,16 @@
 		position: relative;
 		@include max(767px){
 			grid-column:span 12;
+			padding-bottom: 10rem;
 		}
 		&>img{
 			width:100%;
 			height:100%;
 			object-fit:cover;
 			border:.7rem solid $white;
+			@include max(767px){
+				height:calc( 100% + 10rem );
+			}
 		}
 		& .btn{
 			position: absolute;
@@ -619,24 +762,41 @@
 		right:.7rem;
 		height:calc( 100% + 2rem );
 		top:-1rem;
-		background-color: rgba($white, .7);		
+		background-color: rgba($white, .7);
+		@include firefox{
+			right:.65rem;
+		}
+		@include max(767px){
+			height:100%;
+			top:0;
+		}	
 		&-box{	
 			padding:2rem;
 			text-align: center;
 			height: calc( 100% / 3 );
+			@include max(767px){
+				padding:1rem;
+			}
 			&:first-of-type{
 				border-bottom:1px solid $dgray;
 			}
 			&:last-of-type{
-				background: $white url('../images/sand-bg.png') no-repeat bottom center;
+				background: $white url('../images/sand-small.png') no-repeat bottom center;
 				& h5{
 					@include prepTitle;
 					font-size: 1.2rem;
+					@include max(767px){
+						font-size: 1rem;
+					}
 				}
 				& time{
 					@include prepTime;
 					font-size: 5rem;					
 					margin-top:1rem;
+					@include max(767px){
+						font-size: 2rem;
+						margin-top: 0;
+					}
 				}
 				& small{
 					@include prepMin;
@@ -653,6 +813,9 @@
 					font-size: 3.5rem;
 					margin-top:1rem;
 					color:$black;
+					@include max(767px){
+						font-size: 1.7rem;
+					}
 				}
 				& small{
 					@include prepMin;
@@ -668,8 +831,8 @@
 	padding-top:2rem;
 	padding-bottom: 5rem;	
 	@include max(767px){
-		padding-top:1.5rem;
-		padding-bottom:3rem;		
+		padding-top:0;
+		padding-bottom:2.5rem;
 	}
 	&_menu{
 		justify-content: space-around;
