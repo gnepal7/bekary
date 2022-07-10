@@ -73,6 +73,7 @@ $font-body: 'Roboto', sans-serif;
 	margin-bottom: 4.375rem;
 	font-family:$font-title;
 }
+
 @for $index from 1 through 6 {
     h#{$index} {
         font-family: $font-title;

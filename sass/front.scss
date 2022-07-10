@@ -411,12 +411,12 @@
 	@include imgFixed;
 	&_inner{
 		grid-gap:3rem;
-		align-items:center;
-		justify-content:space-around;
-		flex-wrap:wrap;
+		align-items:center;	
+		
 	}
 	& .text-part{
 		text-align: center;
+		padding-left:10rem;
 		& .small-text{
 			@include smtext;
 			font-size: 1.2rem;
@@ -426,6 +426,9 @@
 			& .title{
 				color:$white;
 				font-size: 1.7rem;
+				@include max(767px){
+					font-size: 1.2rem;
+				}
 			}
 			& .sm-text{
 				color: darken($gray, 10%);
@@ -441,15 +444,165 @@
 		}
 	}
 	& .box{
-		
+		padding-left:15rem;
+		padding-right:8rem;
 		&_info{
-			position: relative;
 			padding:2rem;
-			background-color: $white;
+			background-color: $white;			
+			position: relative;
+			box-shadow: 0 7px 0 5px rgba($black, .5);
+			z-index: 1;
 			border:1px dashed $dgray;
-			outline:5px solid $white;
-			position: absolute;			
+			outline:.5rem solid $white;
+			
+			&:before,
+			&:after{
+				border-right:1px dashed $dgray;
+				box-shadow: -5px 0px 0px 0px $white, 5px 0px 0px 0px $white;
+			}
+			// &:before,
+			// &:after{
+			// 	content: "";
+			// 	width:1.5rem;
+			// 	position: absolute;
+			// 	background-color: $white;
+			// 	z-index: -1;
+			// }
+			&:before{
+				height:calc( 100% - 5rem );
+				top:2.5rem;
+				right:-1.5rem;
+			}
+			& .estd{
+				justify-content:space-around;
+			}
+			&-title{
+				font-size: 2.75rem;
+				margin-top:4.6875rem;
+				margin-bottom:3.125rem;
+				color:$dgray;
+			}
+			& .btn{
+				margin-top:3.25rem;
+				margin-bottom: 2rem;
+			}
+		}
+		& .border{
+			justify-content:center;
+			position: relative;
+			&>span,
+			&:before,
+			&:after{
+				content: "";
+				position: absolute;
+			}
+			&>span{
+				width:100%;
+				height:1px;
+				background-color: $black;
+				left:0;
+				top:calc( 50% - .5px );
+			}
+			&:before,
+			&:after{
+				width:1rem;
+				height:1rem;
+				@include radius(50%);
+				border:1px solid $black;
+				top:calc( 50% - .5rem );
+				z-index:1;
+				background-color: $white;
+			}
+			&:before{
+				left:0;
+			}
+			&:after{
+				right:0;
+			}
+			&-round{
+				justify-content:center;
+				align-items:center;
+				height: 3.75rem;
+				width:3.75rem;
+				@include radius(50%);
+				border:1px solid $black;
+				z-index:1;
+				background-color: $white;
+			}
+		}
+		& .content{
+			justify-content:center;
+			align-items:center;
+			text-align: center;
 		}
 	}
 	
+}
+/***** sabdwich part *****/
+.sand{
+	& .big-title,
+	& .sm-text{
+		text-align: center;
+		display: block;
+	}
+	&_inner{
+		grid-gap:5rem;
+	}
+	&_small{
+		grid-column:span 4;
+		text-align: center;
+		margin-top:-2rem;
+		padding-left: 2rem;
+		padding-right:2rem;
+		grid-gap:2.5rem;
+		@include max(767px){
+			grid-column:span 12;
+			padding-left: 1rem;
+			padding-right:1rem;
+			grid-gap:1.5rem;
+		}
+		&-item{
+			grid-gap:1rem;
+			align-items:center;
+			@include max(767px){
+				grid-gap:.7rem;
+			}
+			& img{
+				box-shadow: 0 2px 5px 0 rgba($black, .2);
+				@include radius(50%);
+			}			
+			& .title{
+				font-size: 1.7rem;
+				color: $dgray;
+				@include max(767px){
+					font-size: 1.2rem;
+				}
+			}
+		}
+	}
+	&_big{
+		grid-column:span 8;
+		box-shadow: 0 5px 15px 0 rgba($black, .3);
+		position: relative;
+		@include max(767px){
+			grid-column:span 12;
+		}
+		&>img{
+			width:100%;
+			height:100%;
+			object-fit:cover;
+			border:.7rem solid $white;
+		}
+	}
+	&_prep{
+		position: absolute;
+		right:.7rem;
+		height:calc( 100% + 2rem );
+		top:-1rem;
+		background-color: rgba($white, .7);
+		padding:2rem;
+		&-box{
+			
+		}
+	}
 }
