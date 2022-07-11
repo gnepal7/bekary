@@ -525,6 +525,18 @@
 /***** breakfast *****/
 .break{
 	@include imgFixed;
+	position: relative;
+	z-index:1;
+	&:before{
+		content:"";
+		position: absolute;
+		width: 26%;
+		height:25%;
+		bottom:0;
+		right:0;
+		background:url('../images/break-sm-bg.png') right bottom no-repeat;
+		z-index:6;
+	}
 	&_inner{
 		grid-gap:3rem;
 		align-items:center;	
@@ -544,7 +556,7 @@
 			font-size: 1.2rem;
 		}
 		& .price-wrap{
-			margin-top:4rem;
+			margin-top:2rem;
 			@include max(767px){
 				margin-top:1rem;
 			}
@@ -572,15 +584,18 @@
 			}
 		}
 	}
-	& .box_info{
+	& .box{
 		max-width: 28rem;
 		margin:auto;
-		padding:2rem;
-		background-color: $white;			
 		position: relative;
-		box-shadow: 0 7px 0 5px rgba($black, .5);
-		// z-index: 3;
-		clip-path: polygon(100% 0, 100% 100%, 5% 100%, 0 95%, 0 0);
+		z-index:4;		
+	}
+	& .box_info{
+		padding:2rem;
+		background-color: $white;
+		z-index: 3;
+		clip-path: polygon(100% 0, 100% 100%, 6% 100%, 0 96%, 0 0);		
+		box-shadow: 0 10px 0 10px rgba($black, .3);		
 		@include max(767px){
 			padding:1rem;
 		}
@@ -660,24 +675,44 @@
 			align-items:center;
 			text-align: center;
 		}
-		// &-line{			
-		// 	height:96%;
-		// 	top:2%;	
-		// 	content:"";
-		// 	display: block;		
-		// 	&,
-		// 	&:before{
-		// 		position: absolute;
-		// 		width: 1rem;
-		// 		border-right:1px dashed $dgray;
-		// 		outline: .5rem solid $white;
-		// 		right:-.75rem; 
-		// 	}
-		// 	&:before{
-		// 		height:92%;
-		// 		top:4%;
-		// 	}
-		// }
+		&-line{			
+			width:100%;			
+			background-color: darken($white, 5%);
+			border-right:1px dashed $dgray;
+			position: absolute;
+			padding:.5rem;
+			outline:.5rem solid darken($white, 5%);
+			box-shadow: 0 7px 0 5px rgba($black, .5);
+			@include max(767px){
+				display: none;
+			}			
+			&.line1{
+				top:2rem;
+				left:.5rem;
+				z-index: 0;
+				height:calc( 100% - 4rem );
+			}
+			&.line2{
+				top:4rem;
+				left:1.4rem;
+				z-index:-1;
+				height:calc( 100% - 8rem );
+			}
+			// &,
+			// &:before{
+				
+			// 	width: 1rem;
+			// 	border-right:1px dashed $dgray;
+			// 	background-color: $white;
+			// 	right:-.75rem; 
+			// }
+			// &:before{
+			// 	height:92%;
+			// 	top:4%;
+			// 	content:"";
+			// 	position: absolute;
+			// }
+		}
 	}
 	
 }
